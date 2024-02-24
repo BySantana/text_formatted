@@ -6,6 +6,10 @@ function formatarData(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    autosize(document.getElementById('resizeTextarea'));
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('addTopic');
     const deleteButton = document.getElementById('deleteTopic');
     const generateButton = document.getElementById('generateOutput');
