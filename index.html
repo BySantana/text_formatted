@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="organizer" class="container">
+        <h3 class="d-flex justify-content-center">Formatador de reuniões</h3>
+
+        <hr>
+
+        <label for="casa" class="form-label">Local:</label>
+        <input type="text" id="casa" class="form-control mb-3" placeholder="Nome">
+
+        <label for="presents" class="form-label">Presentes:</label>
+        <input type="text" id="presents" class="form-control mb-3" placeholder="Lista de presentes">
+
+        <div class="mb-3">
+            <input type="checkbox" id="useCurrentDate" class="form-check-input" checked>
+            <label for="useCurrentDate" class="form-check-label">Utilizar data atual</label>
+        </div>
+
+        <div class="mb-3" id="dateInputLabel" hidden>
+            <label for="dateInput" class="form-label">Data</label>
+            <input type="date" id="dateInput" class="form-control">
+        </div>
+
+        <hr>
+
+        <div id="topics">
+            <p>Tópicos abordados: </p>
+            <textarea class="form-control topic-textarea mb-3" placeholder="Tópico 1"></textarea>
+        </div>
+
+        <div class="row justify-content-around">
+
+            <button id="addTopic" class="btn btn-outline-secondary mb-3 mt-3 col-5">Adicionar Item</button>
+            <button id="deleteTopic" class="btn btn-outline-danger mb-3 mt-3 col-5">Excluir Item</button>
+        </div>
+
+        <br>
+        <hr>
+        <div class="row">
+            <button id="generateOutput" class="btn btn-outline-success mb-3 col-12" data-bs-toggle="modal"
+                data-bs-target="#outputModal">Gerar Texto</button>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="outputModal" tabindex="-1" aria-labelledby="outputModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="outputModalLabel">Texto Gerado</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea id="modalOutput" class="form-control" rows="10"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" id="copyButton" class="btn btn-primary">Copiar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="./index.js"> </script>
+    </div>
+</body>
+
+</html>

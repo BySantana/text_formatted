@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #F2F1EB;
+}
+
+#organizer {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.topic-input {
+    margin-bottom: 5px;
+}
