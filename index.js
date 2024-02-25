@@ -5,11 +5,45 @@ function formatarData(data) {
     return `${dia}/${mes}/${ano}`;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    autosize(document.getElementById('resizeTextarea'));
-});
+function addTopic() {
+    const topicsContainer = document.getElementById('topics-container');
+
+    const topicContainer = document.createElement('div');
+    topicContainer.classList.add('topic-container',  'border-bottom');
+
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.placeholder = 'Título do Tópico';
+    titleInput.classList.add('form-control', 'topic-title', 'mb-3');
+
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('form-control', 'topic-textarea', 'mb-3');
+    textarea.placeholder = 'Digite seu tópico aqui...';
+
+    const br = document.createElement('br');
+
+    topicsContainer.appendChild(topicContainer);
+    topicContainer.appendChild(br);
+    topicContainer.appendChild(titleInput);
+    topicContainer.appendChild(textarea);
+    
+    autosize(textarea);
+}
+
+function removeTopic() {
+    const topicsContainer = document.getElementById('topics-container');
+    const topicContainers = topicsContainer.getElementsByClassName('topic-container');
+
+    if (topicContainers.length > 1) {
+        topicsContainer.removeChild(topicContainers[topicContainers.length - 1]);
+    }
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    addTopic();
+
     const addButton = document.getElementById('addTopic');
     const deleteButton = document.getElementById('deleteTopic');
     const generateButton = document.getElementById('generateOutput');
@@ -17,25 +51,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const copyButton = document.getElementById('copyButton');
 
     const useCurrentDateCheckbox = document.getElementById('useCurrentDate');
-    const dateInput = document.getElementById('dateInput');
     const dateInputLabel = document.getElementById('dateInputLabel');
 
     addButton.addEventListener('click', function () {
-        const topicTextarea = document.createElement('textarea');
-        topicTextarea.classList.add('form-control', 'topic-textarea', 'mb-3');
-        topicTextarea.placeholder = 'Novo Tópico';
-
-        document.getElementById('topics').appendChild(topicTextarea);
+        addTopic();
     });
-
+    
     deleteButton.addEventListener('click', function () {
-        const topicsContainer = document.getElementById('topics');
-        const lastTopic = topicsContainer.lastChild;
-
-        if (lastTopic && lastTopic.classList.contains('topic-textarea')) {
-            topicsContainer.removeChild(lastTopic);
-        }
+        removeTopic();
     });
+    
 
     generateButton.addEventListener('click', function () {
         const casaInput = document.getElementById('casa').value;
@@ -52,12 +77,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentDate = new Date();
         const formattedDate = useCurrentDate ? formatarData(currentDate) : formatarData(dateInputValue != '' ? dateInputValue : new Date());
 
-        const topicTextareas = document.getElementsByClassName('topic-textarea');
-        const topics = Array.from(topicTextareas).map((textarea, index) => {
-            return `${index + 1}. ${textarea.value}`;
-        });
+        let formattedText = `*Ata da reunião, dia: ${formattedDate}*\n\n*Local*: ${casaInput}\n\n*Presentes*: ${presentsInput}\n\n*Tópicos:*`;
 
-        const formattedText = `*Ata da reunião, dia: ${formattedDate}*\n\n*Local*: ${casaInput}\n\n*Presentes*: ${presentsInput}\n\n*Tópicos:*\n\n${topics.join('\n\n')}`;
+        const topicsContainer = document.getElementById('topics-container');
+        const topicContainers = topicsContainer.getElementsByClassName('topic-container');    
+
+        for (const topicContainer of topicContainers) {
+            const titleInput = topicContainer.querySelector('.topic-title');
+            const textarea = topicContainer.querySelector('.topic-textarea');
+    
+            const title = titleInput.value.trim();
+            const topic = textarea.value.trim();
+    
+            if (title || topic) {
+                formattedText += `\n\n${title != '' ? '*'+title+'*' + ':\n' : ''}${topic}`;
+            }
+        }
 
         modalOutput.value = formattedText;
     });

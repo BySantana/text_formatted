@@ -10,7 +10,7 @@
 
 <body>
     <div id="organizer" class="container">
-        <h3 class="d-flex justify-content-center">Formatador de reuniões</h3>
+        <h3 class="d-flex justify-content-center">Ata de reunião - DTP</h3>
 
         <hr>
 
@@ -32,9 +32,8 @@
 
         <hr>
 
-        <div id="topics">
-            <p>Tópicos abordados: </p>
-            <textarea id="resizeTextarea" class="form-control topic-textarea mb-3" placeholder="Tópico 1"></textarea>
+        <div id="topics-container">
+            <span>Tópicos abordados: </span>
         </div>
 
         <div class="row justify-content-around">
@@ -43,7 +42,7 @@
             <button id="deleteTopic" class="btn btn-outline-danger mb-3 mt-3 col-5">Excluir Item</button>
         </div>
 
-        <br>
+        
         <hr>
         <div class="row">
             <button id="generateOutput" class="btn btn-outline-success mb-3 col-12" data-bs-toggle="modal"
@@ -56,7 +55,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="outputModalLabel">Texto Gerado</h5>
+                        <h5 class="modal-title" id="outputModalLabel">Texto Editável</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
