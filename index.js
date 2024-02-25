@@ -13,7 +13,7 @@ function addTopic() {
 
     const titleInput = document.createElement('input');
     titleInput.type = 'text';
-    titleInput.placeholder = 'Título do Tópico';
+    titleInput.placeholder = 'Título (opcional)';
     titleInput.classList.add('form-control', 'topic-title', 'mb-3');
 
     const textarea = document.createElement('textarea');
